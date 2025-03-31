@@ -2,6 +2,7 @@
 
 #include <map>
 #include "ATarget.hpp"
+#include "SpellBook.hpp"
 
 using namespace std;
 
@@ -9,7 +10,7 @@ class Warlock {
 private:
 	string name;
 	string title;
-	map<string, ASpell *> spellBook;
+	SpellBook spellBook;
  
 public:
 	Warlock(const string &name, const string &title) : name (name), title(title) {
@@ -38,16 +39,17 @@ public:
 
 	void learnSpell(ASpell *spell) {
 		if (spell)
-			spellBook.insert(make_pair(spell->getName(), spell->clone()));
+			spellBook.learnSpell(spell);
 	}
 
 	void forgetSpell(const string &spellName) {
-		if (spellBook.find(spellName) != spellBook.end())
-			spellBook.erase(spellBook.find(spellName));
+		spellBook.forgetSpell(spellName);
 	}
 
 	void launchSpell(const string &spellName, const ATarget &target) {
-		if (spellBook.find(spellName) != spellBook.end())
-			spellBook[spellName]->launch(target);
+		ASpell *tmp = NULL;
+		spellBook.createSpell(spellName);
+		if (tmp)
+			tmp->launch(target);
 	}
 };
