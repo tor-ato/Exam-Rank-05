@@ -1,10 +1,10 @@
-#ifndef WARLOCK_HPP
-#define WARLOCK_HPP
+#pragma once
 
 #include <string>
-#include <map>
-#include "ATarget.hpp"
 #include <iostream>
+#include <map>
+
+#include "ATarget.hpp"
 
 class Warlock {
 private:
@@ -13,17 +13,42 @@ private:
 	std::map<std::string, ASpell *> spellBook;
  
 public:
-	Warlock(const std::string &name, const std::string &title);
-	~Warlock();
+	Warlock(const std::string &name, const std::string &title) : name (name), title(title) {
+		std::cout << name << ": This looks like another boring day." << std::endl;
+	}
 
-	const std::string &getName() const;
-	const std::string &getTitle() const;
-	void setTitle(const std::string &title);
+	~Warlock() {
+		std::cout << name << ": My job here is done!" << std::endl;
+	}
 
-	void introduce() const;
-	void learnSpell(ASpell *spell);
-	void forgetSpell(const std::string &spellname);
-	void launchSpell(const std::string &apellname, const ATarget &target);
+	const std::string &getName() const {
+		return name;
+	}
+
+	const std::string &getTitle() const {
+		return title;
+	}
+
+	void setTitle(const std::string &title) {
+		this->title = title;
+	}
+
+	void introduce() const {
+		std::cout << name << ": I am " << name << ", " << title << "!" << std::endl;
+	}
+
+	void learnSpell(ASpell *spell) {
+		if (spell)
+			spellBook.insert(std::make_pair(spell->getName(), spell->clone()));
+	}
+
+	void forgetSpell(const std::string &spellName) {
+		if (spellBook.find(spellName) != spellBook.end())
+			spellBook.erase(spellBook.find(spellName));
+	}
+
+	void launchSpell(const std::string &spellName, const ATarget &target) {
+		if (spellBook.find(spellName) != spellBook.end())
+			spellBook[spellName]->launch(target);
+	}
 };
-
-#endif
