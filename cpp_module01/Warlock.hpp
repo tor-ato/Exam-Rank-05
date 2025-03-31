@@ -3,7 +3,6 @@
 #include <string>
 #include <iostream>
 #include <map>
-
 #include "ATarget.hpp"
 
 class Warlock {
