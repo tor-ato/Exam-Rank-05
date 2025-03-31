@@ -1,5 +1,4 @@
-#ifndef BRICKWALL_HPP
-#define BRICKWALL_HPP
+#pragma once
 
 #include "ATarget.hpp"
 
@@ -7,10 +6,11 @@ class ATarget;
 
 class BrickWall : public ATarget {
 public:
-	BrickWall();
-	~BrickWall();
-	
-	ATarget *clone() const;
-};
+	BrickWall() : ATarget("Inconspicuous Red-brick Wall") {}
 
-#endif
+	~BrickWall() {}
+
+	ATarget *clone() const {
+		return new BrickWall();
+	}
+};

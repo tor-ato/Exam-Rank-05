@@ -1,5 +1,4 @@
-#ifndef DUMMY_HPP
-#define DUMMY_HPP
+#pragma once
 
 #include "ATarget.hpp"
 
@@ -7,10 +6,11 @@ class ATarget;
 
 class Dummy : public ATarget {
 public:
-	Dummy();
-	~Dummy();
-	
-	ATarget *clone() const;
-};
+	Dummy() : ATarget("Target Practice Dummy") {}
 
-#endif
+	~Dummy() {}
+
+	ATarget *clone() const {
+		return new Dummy();
+	}
+};

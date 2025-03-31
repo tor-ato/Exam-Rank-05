@@ -1,14 +1,14 @@
-#ifndef FWOOSH_HPP
-#define FWOOSH_HPP
+#pragma once
 
 #include "ASpell.hpp"
 
 class Fwoosh : public ASpell {
 public:
-	Fwoosh();
-	~Fwoosh();
-	
-	ASpell *clone() const;
-};
+	Fwoosh() : ASpell("Fwoosh", "fwooshed") {}
 
-#endif
+	~Fwoosh() {}
+
+	ASpell *clone() const {
+		return new Fwoosh();
+	}
+};

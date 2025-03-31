@@ -1,21 +1,30 @@
-#ifndef TARGETGENERATOR_HPP
-#define TARGETGENERATOR_HPP
+#pragma once
 
 #include "ATarget.hpp"
-#include <map>
 
 class TargetGenerator {
 private:
-	std::map<std::string, ATarget *> targetBook;
+	map<string, ATarget *> targetBook;
  
 public:
-	TargetGenerator();
-	~TargetGenerator();
+	TargetGenerator() {}
 
-	void learnTargetType(ATarget *target);
-	void forgetTarget(const std::string &targetType);
-	ATarget* createTarget(std::string const &targetType);
+	~TargetGenerator() {}
+
+	void learnTargetType(ATarget *target) {
+		if (target)
+			targetBook.insert(make_pair(target->getType(), target->clone()));
+	}
+
+	void forgetTarget(const string &targetType) {
+		if (targetBook.find(targetType) != targetBook.end())
+			targetBook.erase(targetBook.find(targetType));
+	}
+
+	ATarget* createTarget(string const &targetType) {
+		ATarget *tmp = NULL;
+		if (targetBook.find(targetType) != targetBook.end())
+			tmp = targetBook[targetType];
+		return tmp;
+	}
 };
-
-#endif
-

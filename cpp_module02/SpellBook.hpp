@@ -1,20 +1,30 @@
-#ifndef SPELLBOOK_HPP
-#define SPELLBOOK_HPP
+#pragma once
 
 #include "ASpell.hpp"
-#include <map>
 
 class SpellBook {
 private:
-	std::map<std::string, ASpell *> spellBook;
+	map<string, ASpell *> spellBook;
  
 public:
-	SpellBook();
-	~SpellBook();
+	SpellBook() {}
 
-	void learnSpell(ASpell *spell);
-	void forgetSpell(const std::string &spellName);
-	ASpell* createSpell(std::string const &spellName);
+	~SpellBook() {}
+
+	void learnSpell(ASpell *spell) {
+		if (spell)
+			spellBook.insert(make_pair(spell->getName(), spell->clone()));
+	}
+
+	void forgetSpell(const string &spellName) {
+		if (spellBook.find(spellName) != spellBook.end())
+			spellBook.erase(spellBook.find(spellName));
+	}
+
+	ASpell* createSpell(string const &spellName) {
+		ASpell *tmp = NULL;
+		if (spellBook.find(spellName) != spellBook.end())
+			tmp = spellBook[spellName];
+		return tmp;
+	}
 };
-
-#endif
