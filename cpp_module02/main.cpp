@@ -33,6 +33,6 @@ int main()
   richard.launchSpell("Polymorph", *wall);
   richard.launchSpell("Fireball", *wall);
 
-  delete polymorph; // add
-  delete fireball; // add
+  delete polymorph;
+  delete fireball;
 }

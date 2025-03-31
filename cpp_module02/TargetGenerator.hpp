@@ -1,21 +1,21 @@
 #ifndef TARGETGENERATOR_HPP
-# define TARGETGENERATOR_HPP
+#define TARGETGENERATOR_HPP
 
-# include "ATarget.hpp"
-# include <map>
+#include "ATarget.hpp"
+#include <map>
 
-class TargetGenerator
-{
-	private:
-		std::map<std::string, ATarget *> targetBook;
+class TargetGenerator {
+private:
+	std::map<std::string, ATarget *> targetBook;
+ 
+public:
+	TargetGenerator();
+	~TargetGenerator();
 
-	public:
-		TargetGenerator();
-		~TargetGenerator();
-
-		void learnTargetType(ATarget *target);
-		void forgetTargetType(std::string const &targetType);
-		ATarget* createTarget(std::string const &targetType);
+	void learnTargetType(ATarget *target);
+	void forgetTarget(const std::string &targetType);
+	ATarget* createTarget(std::string const &targetType);
 };
 
 #endif
+
