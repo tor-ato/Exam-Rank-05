@@ -1,15 +1,13 @@
 #include "Warlock.hpp"
-
-#include "ASpell.hpp"
-#include "ATarget.hpp"
 #include "Fwoosh.hpp"
 #include "Dummy.hpp"
-
-#include "Fireball.hpp"
-#include "Polymorph.hpp"
 #include "BrickWall.hpp"
-#include "SpellBook.hpp"
+#include "Polymorph.hpp"
 #include "TargetGenerator.hpp"
+#include "Fireball.hpp"
+#include "ATarget.hpp"
+#include "ASpell.hpp"
+#include "SpellBook.hpp"
 
 int main()
 {
@@ -32,7 +30,4 @@ int main()
   richard.introduce();
   richard.launchSpell("Polymorph", *wall);
   richard.launchSpell("Fireball", *wall);
-
-  delete polymorph;
-  delete fireball;
 }
