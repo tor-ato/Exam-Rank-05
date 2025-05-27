@@ -3,28 +3,30 @@
 #include "ASpell.hpp"
 
 class SpellBook {
-private:
-	map<string, ASpell *> spellBook;
- 
-public:
+ public:
 	SpellBook() {}
 
 	~SpellBook() {}
 
 	void learnSpell(ASpell *spell) {
 		if (spell)
-			spellBook.insert(make_pair(spell->getName(), spell->clone()));
+			_spellBook[spell->getName()] = spell->clone();
 	}
 
 	void forgetSpell(const string &spellName) {
-		if (spellBook.find(spellName) != spellBook.end())
-			spellBook.erase(spellBook.find(spellName));
+        auto it = _spellBook.find(spellName);
+        if (it != _spellBook.end())
+            _spellBook.erase(it);
 	}
 
 	ASpell* createSpell(string const &spellName) {
 		ASpell *tmp = NULL;
-		if (spellBook.find(spellName) != spellBook.end())
-			tmp = spellBook[spellName];
+		auto it = _spellBook.find(spellName);
+		if (it != _spellBook.end())
+			tmp = it->second;
 		return tmp;
 	}
+
+ private:
+	map<string, ASpell *> _spellBook;
 };

@@ -5,7 +5,7 @@
 class ATarget;
 
 class Dummy : public ATarget {
-public:
+ public:
 	Dummy() : ATarget("Target Practice Dummy") {}
 
 	~Dummy() {}

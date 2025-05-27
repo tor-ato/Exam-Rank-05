@@ -3,10 +3,10 @@
 #include "ASpell.hpp"
 
 class Fireball : public ASpell {
-public:
+ public:
 	Fireball() : ASpell("Fireball", "burnt to a crisp") {}
 
-	virtual ~Fireball() {}
+	~Fireball() {}
 
 	ASpell *clone() const {
 		return new Fireball();

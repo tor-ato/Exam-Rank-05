@@ -7,48 +7,48 @@
 using namespace std;
 
 class Warlock {
-private:
-	string name;
-	string title;
-	SpellBook spellBook;
- 
-public:
-	Warlock(const string &name, const string &title) : name (name), title(title) {
-		cout << name << ": This looks like another boring day." << endl;
+ public:
+	Warlock(const string &name, const string &title) : _name(name), _title(title) {
+		cout << _name << ": This looks like another boring day." << endl;
 	}
 
 	~Warlock() {
-		cout << name << ": My job here is done!" << endl;
+		cout << _name << ": My job here is done!" << endl;
 	}
 
 	const string &getName() const {
-		return name;
+		return _name;
 	}
 
 	const string &getTitle() const {
-		return title;
+		return _title;
 	}
 
 	void setTitle(const string &title) {
-		this->title = title;
+		_title = title;
 	}
 
 	void introduce() const {
-		cout << name << ": I am " << name << ", " << title << "!" << endl;
+		cout << _name << ": I am " << _name << ", " << _title << "!" << endl;
 	}
 
 	void learnSpell(ASpell *spell) {
 		if (spell)
-			spellBook.learnSpell(spell);
+			_spellBook.learnSpell(spell);
 	}
 
 	void forgetSpell(const string &spellName) {
-		spellBook.forgetSpell(spellName);
+		_spellBook.forgetSpell(spellName);
 	}
 
 	void launchSpell(const string &spellName, const ATarget &target) {
-		ASpell *tmp = spellBook.createSpell(spellName);
-		if (tmp)
-			tmp->launch(target);
+		ASpell *spell = _spellBook.createSpell(spellName);
+		if (spell)
+			spell->launch(target);
 	}
+
+ private:
+	string _name;
+	string _title;
+	SpellBook _spellBook;
 };

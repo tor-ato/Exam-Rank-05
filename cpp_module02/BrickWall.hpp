@@ -5,7 +5,7 @@
 class ATarget;
 
 class BrickWall : public ATarget {
-public:
+ public:
 	BrickWall() : ATarget("Inconspicuous Red-brick Wall") {}
 
 	~BrickWall() {}
