@@ -8,48 +8,50 @@
 using namespace std;
 
 class Warlock {
-private:
-	string name;
-	string title;
-	map<string, ASpell *> spellBook;
- 
-public:
-	Warlock(const string &name, const string &title) : name (name), title(title) {
-		cout << name << ": This looks like another boring day." << endl;
+ public:
+	Warlock(const string &name, const string &title) : _name(name), _title(title) {
+		cout << _name << ": This looks like another boring day." << endl;
 	}
 
 	~Warlock() {
-		cout << name << ": My job here is done!" << endl;
+		cout << _name << ": My job here is done!" << endl;
 	}
 
 	const string &getName() const {
-		return name;
+		return _name;
 	}
 
 	const string &getTitle() const {
-		return title;
+		return _title;
 	}
 
 	void setTitle(const string &title) {
-		this->title = title;
+		_title = title;
 	}
 
 	void introduce() const {
-		cout << name << ": I am " << name << ", " << title << "!" << endl;
+		cout << _name << ": I am " << _name << ", " << _title << "!" << endl;
 	}
 
 	void learnSpell(ASpell *spell) {
 		if (spell)
-			spellBook.insert(make_pair(spell->getName(), spell->clone()));
+            _spellBook[spell->getName()] = spell->clone();
 	}
 
 	void forgetSpell(const string &spellName) {
-		if (spellBook.find(spellName) != spellBook.end())
-			spellBook.erase(spellBook.find(spellName));
+        auto it = _spellBook.find(spellName);
+        if (it != _spellBook.end())
+            _spellBook.erase(it);
 	}
 
 	void launchSpell(const string &spellName, const ATarget &target) {
-		if (spellBook.find(spellName) != spellBook.end())
-			spellBook[spellName]->launch(target);
+		auto it = _spellBook.find(spellName);
+		if (it != _spellBook.end())
+			it->second->launch(target);
 	}
+
+ private:
+	string _name;
+	string _title;
+	map<string, ASpell *> _spellBook;
 };

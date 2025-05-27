@@ -3,7 +3,7 @@
 #include "ASpell.hpp"
 
 class Fwoosh : public ASpell {
-public:
+ public:
 	Fwoosh() : ASpell("Fwoosh", "fwooshed") {}
 
 	~Fwoosh() {}

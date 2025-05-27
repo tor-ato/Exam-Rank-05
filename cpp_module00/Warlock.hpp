@@ -6,33 +6,32 @@
 using namespace std;
 
 class Warlock {
-private:
-	string name;
-	string title;
-
-public:
-	Warlock(const string &name, const string &title) : name(name), title(title) {
-		cout << name << ": This looks like another boring day." << endl;
+ public:
+	Warlock(const string &name, const string &title) : _name(name), _title(title) {
+		cout << _name << ": This looks like another boring day." << endl;
 	}
 
 	~Warlock() {
-		cout << name << ": My job here is done!" << endl;
+		cout << _name << ": My job here is done!" << endl;
 	}
 
 	const string &getName() const {
-		return name;
+		return _name;
 	}
 
 	const string &getTitle() const {
-		return title;
+		return _title;
 	}
 
 	void setTitle(const string &title) {
-		this->title = title;
+		_title = title;
 	}
 
 	void introduce() const {
-		cout << name << ": I am " << name << ", " << title << "!" << endl; 
+		cout << _name << ": I am " << _name << ", " << _title << "!" << endl;
 	}
-};
 
+ private:
+	string _name;
+	string _title;
+};

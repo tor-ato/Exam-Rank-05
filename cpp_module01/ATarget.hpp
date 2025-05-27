@@ -9,19 +9,19 @@ using namespace std;
 class ASpell;
 
 class ATarget {
-private:
-	string type;
+ public:
+	ATarget(const string &type) : _type(type) {}
 
-public:
-	ATarget(const string &type) : type(type) {}
-
-	~ATarget() {}
+	virtual ~ATarget() {}
 
 	const string &getType() const {
-		return type;
+		return _type;
 	}
 
 	virtual ATarget *clone() const = 0;
 
 	void getHitBySpell(const ASpell &spell) const;
+
+ private:
+	string _type;
 };
